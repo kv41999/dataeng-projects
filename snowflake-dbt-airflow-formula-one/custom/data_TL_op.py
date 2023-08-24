@@ -23,7 +23,7 @@ class FormulaOneDataTransformer(BaseOperator):
     def execute(self, context):
 
         ti = context["ti"]
-        start_year = ti.xcom_pull("Data_fetch","FormulaOneETL2","year")
+        start_year = ti.xcom_pull("Race_data_fetch","FormulaOneETL4","year")
 
         race_df = sc.read.format("json").option("path",self.race_input_path + f"/race_{start_year}.json").load()
         quali_df = sc.read.format("json").option("path",self.quali_input_path + f"/quali_{start_year}.json").load()
